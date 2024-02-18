@@ -1,18 +1,21 @@
 <template>
-    <header> 
-    <div class=" border-2 border-purple-800 flex justify-around items-center bg-gray-100 border-5 m-2  border-amber-300 rounded-md shadow-lg p-4 inline text-center h-18"> 
+    <header>
+    
+        <div class="flex justify-around items-center  bg-purple-800 shadow-xl p-4 inline text-center h-18"> 
         <div class="">
-            <img class="h-16 w-16" src="../assets/ramadan.png">
+            <img class="h-16 w-16 hover:cursor-pointer hover:scale-110 transition-transform duration-300" src="../assets/ramadan.png">
         </div>
         <div class="">
             <ul class="inline flex">
-                <li class="mr-2 text-xl mx-3 cursor-pointer text-purple-600 hover:text-purple-800 hover:underline-offset-4 hover:underline"> Tienda</li>
-                <li class="mr-2 text-xl mx-3 cursor-pointer text-purple-600 hover:text-purple-800 hover:underline-offset-4 hover:underline"> Rebajas</li>
-                <li class="text-xl mx-3 cursor-pointer text-purple-600 hover:text-purple-800 hover:underline-offset-4 hover:underline"> Proyecto</li>
+                <li class="mr-2 text-2xl mx-3 cursor-pointer text-white hover:text-gray-100 hover:underline-offset-4 hover:underline"> Tienda</li>
+                <li class="mr-2 text-2xl mx-3 cursor-pointer text-white hover:text-gray-100 hover:underline-offset-4 hover:underline"> Rebajas</li>
+                <li class="text-2xl mx-3 cursor-pointer text-white hover:text-gray-100 hover:underline-offset-4 hover:underline"> Proyecto</li>
             </ul>
         </div>
         <div>
-            <img class="h-12 w-12" src="../assets/carrito.png">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-cart4 hover:scale-125 transition-transform duration-200 hover:cursor-pointer" viewBox="0 0 16 16">
+                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+            </svg>
         </div>
     </div>
     </header>
