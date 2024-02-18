@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted} from 'vue'
+import {ref, onMounted, watch} from 'vue'
 import Header from './components/Header.vue'
 import ProductoGaleria from './components/ProductoGaleria.vue';
 import {db} from './data/productos';
@@ -9,7 +9,20 @@ import {db} from './data/productos';
 
   onMounted( () => {
     productos.value=db
+
+    const carritoStorage = localStorage.getItem('carrito')
+    if(carritoStorage) carrito.value = JSON.parse(carritoStorage)
   })
+  
+  watch(carrito, () => {
+    guardarLocalStorage()
+  },{
+    deep:true // Entrara a todos los attr del carrito para ver cuando cambien
+  })
+
+  const guardarLocalStorage = () => {
+    localStorage.setItem('carrito', JSON.stringify(carrito.value))
+  }
 
   const agregarProductoCarrito = (producto) => {
     const existeCarrito = carrito.value.findIndex(productoC => productoC.id === producto.id)
@@ -23,11 +36,40 @@ import {db} from './data/productos';
     }  // accedemos con .value porque estamos en el script
   }
 
+  // Metodos del carrito que provienen del HEADER
+  const incrementarCantidadProducto = (id) => {
+    const index = carrito.value.findIndex(producto => producto.id === id)
+    if(carrito.value[index].cantidad > 4) return
+    carrito.value[index].cantidad++
+  }
+
+  const decrementarCantidadProducto = (id) => {
+    const index = carrito.value.findIndex(producto => producto.id === id)
+    if(carrito.value[index].cantidad <= 1 ){
+      eliminarProductoCarrito(id)
+      return
+    }
+    carrito.value[index].cantidad--
+  }
+
+  const vaciarCarrito = () => {
+    carrito.value=[];
+  }
+
+  const eliminarProductoCarrito = (id) => {
+    carrito.value = carrito.value.filter(producto => producto.id != id)
+  }
+
 </script>
 
 <template>
     <Header
-    :carrito="carrito"> </Header>
+      :carrito="carrito"
+      @incrementar-cantidad-producto="incrementarCantidadProducto"
+      @decrementar-cantidad-producto ="decrementarCantidadProducto"
+      @vaciar-carrito="vaciarCarrito"
+      @eliminar-producto-carrito="eliminarProductoCarrito"
+    > </Header>
     <div class="grid grid-cols-[15%_auto] text-start px-4 my-10 gap-6 relative">
         <div class="rounded-md self-start sticky top-4">
             <ul class="py-4 px-5 text-center divide-y-4 divide-gray-100 divide-" role="list">

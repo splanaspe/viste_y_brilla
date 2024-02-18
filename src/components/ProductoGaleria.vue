@@ -11,7 +11,7 @@
     
 </script>
 <template>
-    <div class="rounded-md p-3 basis-1/4 shadow-md text-center relative hover:scale-105 transition-transform duration-100 hover:cursor-pointer"> 
+    <div class="rounded-md p-3 basis-1/4 shadow-md text-center relative hover:cursor-pointer"> 
         <img class="rounded-md" :src='"src/assets/"+producto.imagen'>
         <h1 class="text-lg font-bold text-purple-800"> {{ producto.nombre }}</h1>
         <p> {{ producto.precio }} $</p>
