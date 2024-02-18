@@ -1,5 +1,6 @@
 <script setup>
-    
+    import {ref, defineEmits} from 'vue'
+
     const props = defineProps({
         producto:{
             type: Object,
@@ -7,27 +8,77 @@
         }
     })
 
-    defineEmits(['agregar-producto-carrito']);
+    const talla = ref('');
+    const mostrarAlerta=ref(false)
+
+    // const emit = defineEmits(['agregar-producto-carrito']);
     
+    const modificarTalla = (tallaSeleccionada) => {
+        if (talla.value === tallaSeleccionada) talla.value = '';
+        else talla.value = tallaSeleccionada;
+    };
+
+    const agregarCarrito = () => {
+        if (talla.value === '') {
+            //Muestra la alerta
+            mostrarAlerta.value = true;
+            // Oculta la alerta después de 2 segundos
+            setTimeout(() => {
+            mostrarAlerta.value = false;
+            }, 2000);
+        } else {
+            // Lógica para agregar el producto al carrito
+            emit('agregar-producto-carrito')
+        }
+    };
+
 </script>
 <template>
-    <div class="rounded-md p-3 basis-1/4 shadow-md text-center relative hover:cursor-pointer"> 
+    <div class="rounded-md p-3 basis-1/4 shadow-md text-center relative"> 
         <img class="rounded-md" :src='"src/assets/"+producto.imagen'>
-        <h1 class="text-lg font-bold text-purple-800"> {{ producto.nombre }}</h1>
-        <p> {{ producto.precio }} $</p>
-        <div 
-            class="absolute bottom-0 right-0 p-2" 
-            @click="$emit('agregar-producto-carrito', producto)">
-            <svg
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                fill="purple" 
-                class="bi bi-cart-plus hover:scale-125 transition-transform duration-100" 
-                viewBox="0 0 16 16">
-                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                </svg>
+        <h1 class="text-xl font-bold text-purple-800 my-2"> {{ producto.nombre }}</h1>
+        <p class="text-lg"> {{ producto.precio }} $</p>
+        
+        <div class="flex gap-2 justify-center items-center my-3 relative">
+            <div 
+                :class=" talla=='S' ? 'border-black' : 'border-white'"
+                class="p-2 border-2 hover:border-black rounded-full"
+                @click="modificarTalla('S')"    
+            >
+                <p> S </p>
+            </div>
+            <div 
+                :class=" talla=='M' ? 'border-black' : 'border-white'"
+                class="p-2 border-2 hover:border-black rounded-full" 
+                @click="modificarTalla('M')">
+                <p> M </p>
+            </div>
+            <div
+                :class=" talla=='L' ? 'border-black' : 'border-white'"
+                class="p-2 border-2 hover:border-black rounded-full"
+                @click="modificarTalla('L')">
+                <p> L </p>
+            </div>
+            <div
+                :class=" talla=='XL' ? ' border-black' : 'border-white'"
+                class="p-2 border-2 hover:border-black rounded-full"
+                @click="modificarTalla('XL')">
+                <p> XL </p>
+            </div>
+            <div 
+                :class=" talla=='XXL' ? ' border-black' : 'border-white'"
+                class="p-2 border-2 hover:border-black rounded-full"
+                @click="modificarTalla('XXL')">
+                <p> XXL </p>
+            </div>
+        </div>
+        <button
+            class="bg-orange-200 text-black-700 p-2 mx-2 rounded-md  my-2 hover:cursor-pointer hover:scale-110 transition-transform duration-100"
+            @click="agregarCarrito"> 
+            <p> Añadir Carrito </p>  
+        </button>
+        <div v-if="mostrarAlerta" class="fixed right-4 bottom-4 z-50 bg-red-500 text-white p-4 rounded-md">
+            Debe escoger una talla para agregar el producto.
         </div>
     </div>
 </template>

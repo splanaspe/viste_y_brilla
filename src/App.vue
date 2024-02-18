@@ -70,8 +70,8 @@ import {db} from './data/productos';
       @vaciar-carrito="vaciarCarrito"
       @eliminar-producto-carrito="eliminarProductoCarrito"
     > </Header>
-    <div class="grid grid-cols-[15%_auto] text-start px-4 my-10 gap-6 relative">
-        <div class="rounded-md self-start sticky top-4">
+    <div class="grid grid-cols-[15%_auto] text-start px-4 my-10 gap-6 relative pt-20">
+        <div class="rounded-md self-start sticky top-4 pt-16">
             <ul class="py-4 px-5 text-center divide-y-4 divide-gray-100 divide-" role="list">
                 <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
                 <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
