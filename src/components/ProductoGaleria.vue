@@ -46,11 +46,12 @@
 
 </script>
 <template>
+
     <div class="rounded-md p-3 basis-1/4 shadow-md text-center relative"> 
         <img class="rounded-md" :src='"src/assets/"+producto.imagen'>
-        <h1 class="text-xl font-bold text-purple-800 my-2"> {{ producto.nombre }}</h1>
+        <h1 class="text-xl font-bold text-purple-800 my-2 hover:underline hover:cursor-pointer"> {{ producto.nombre }}</h1>
         <p class="text-lg"> {{ producto.precio }} $</p>
-        
+
         <div class="flex gap-2 justify-center items-center my-3 relative">
             <div 
                 :class=" talla=='S' ? 'border-black' : 'border-white'"
@@ -61,25 +62,25 @@
             </div>
             <div 
                 :class=" talla=='M' ? 'border-black' : 'border-white'"
-                class="p-2 border-2 hover:border-black rounded-full" 
+                class="p-2 border-2 hover:border-black rounded-full hover:cursor-pointer" 
                 @click="modificarTalla('M')">
                 <p> M </p>
             </div>
             <div
                 :class=" talla=='L' ? 'border-black' : 'border-white'"
-                class="p-2 border-2 hover:border-black rounded-full"
+                class="p-2 border-2 hover:border-black rounded-full hover:cursor-pointer"
                 @click="modificarTalla('L')">
                 <p> L </p>
             </div>
             <div
                 :class=" talla=='XL' ? ' border-black' : 'border-white'"
-                class="p-2 border-2 hover:border-black rounded-full"
+                class="p-2 border-2 hover:border-black rounded-full hover:cursor-pointer"
                 @click="modificarTalla('XL')">
                 <p> XL </p>
             </div>
             <div 
                 :class=" talla=='XXL' ? ' border-black' : 'border-white'"
-                class="p-2 border-2 hover:border-black rounded-full"
+                class="p-2 border-2 hover:border-black rounded-full hover:cursor-pointer"
                 @click="modificarTalla('XXL')">
                 <p> XXL </p>
             </div>
@@ -98,4 +99,5 @@
             Producto añadido correctamente al carrito
         </div>
     </div>
+
 </template>

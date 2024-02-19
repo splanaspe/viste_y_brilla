@@ -1,32 +1,33 @@
 <script setup>
 import {ref, onMounted, watch} from 'vue'
 import {uid} from 'uid'
-import Header from './components/Header.vue'
-import ProductoGaleria from './components/ProductoGaleria.vue';
 import {db} from './data/productos';
+
+import Header from './components/Header.vue';
+import ProductoGaleria from './components/ProductoGaleria.vue';
 
   const productos = ref([]);
   const carrito = ref([]);
 
   onMounted( () => {
-    productos.value=db
+      productos.value=db
 
-    const carritoStorage = localStorage.getItem('carrito')
-    if(carritoStorage) carrito.value = JSON.parse(carritoStorage)
+      const carritoStorage = localStorage.getItem('carrito')
+      if(carritoStorage) carrito.value = JSON.parse(carritoStorage)
   })
   
   watch(carrito, () => {
-    guardarLocalStorage()
+      guardarLocalStorage()
   },{
-    deep:true // Entrara a todos los attr del carrito para ver cuando cambien
+      deep:true // Entrara a todos los attr del carrito para ver cuando cambien
   })
 
   const guardarLocalStorage = () => {
-    localStorage.setItem('carrito', JSON.stringify(carrito.value))
+      localStorage.setItem('carrito', JSON.stringify(carrito.value))
   }
 
   const agregarProductoCarrito = (productoOriginal, talla) => {
-    const existeCarrito = carrito.value.findIndex(productoC => productoC.id === productoOriginal.id && productoC.talla === talla);
+    const existeCarrito = carrito.value.findIndex(productoC => productoC.id === productoOriginal.id);
     if (existeCarrito >= 0) {
         // Producto ya existe en el carrito con la misma talla, incrementamos la cantidad
         carrito.value[existeCarrito].cantidad++;
@@ -78,9 +79,13 @@ import {db} from './data/productos';
       @vaciar-carrito="vaciarCarrito"
       @eliminar-producto-carrito="eliminarProductoCarrito"
     > </Header>
-    <div class="grid grid-cols-[15%_auto] text-start px-4 my-10 gap-6 relative pt-20">
-        <div class="rounded-md self-start sticky top-4 pt-16">
-            <ul class="py-4 px-5 text-center divide-y-4 divide-gray-100 divide-" role="list">
+
+    <div
+      class="grid grid-cols-[15%_auto] text-start px-4 my-10 gap-6 relative pt-10"
+    >
+        
+        <div class="rounded-md self-start top-4 sticky pt-7">
+            <ul class="py-4 px-5 text-center divide-y-4 divide-gray-100" role="list">
                 <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
                 <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
                 <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Abayas  </li>
@@ -88,15 +93,17 @@ import {db} from './data/productos';
                 <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Accesorios </li>
             </ul>
         </div>
-        <div class="grid grid-cols-3 gap-6 content-start snap-y ">
-        <ProductoGaleria
-          v-for="producto in productos"
-          v-bind:producto="producto"
-          @agregar-producto-carrito="agregarProductoCarrito"/>
-      </div>
+
+        <div class="grid grid-cols-3 gap-6 content-start snap-y">
+          <ProductoGaleria
+            v-for="producto in productos"
+            v-bind:producto="producto"
+            @agregar-producto-carrito="agregarProductoCarrito"/>
+        </div>
+
     </div>
-    
-    <div class="h-52">
+
+    <div class="h-48">
 
     </div>
 </template>
