@@ -1,5 +1,6 @@
 <script setup>
 import {ref, onMounted, watch} from 'vue'
+import {uid} from 'uid'
 import Header from './components/Header.vue'
 import ProductoGaleria from './components/ProductoGaleria.vue';
 import {db} from './data/productos';
@@ -24,18 +25,24 @@ import {db} from './data/productos';
     localStorage.setItem('carrito', JSON.stringify(carrito.value))
   }
 
-  const agregarProductoCarrito = (producto, talla) => {
-    const existeCarrito = carrito.value.findIndex(productoC => productoC.id === producto.id)
-    if(existeCarrito >=0) {
-      carrito.value[existeCarrito].cantidad++;
-      console.log("Producto ya en el carrito, sumamos +1"+producto.nombre);
-    }else{
-      producto.cantidad=1;
-      producto.talla=talla;
-      carrito.value.push(producto);
-      console.log("Añadimos producto "+producto.nombre+" al carrito");
-    }  // accedemos con .value porque estamos en el script
-  }
+  const agregarProductoCarrito = (productoOriginal, talla) => {
+    const existeCarrito = carrito.value.findIndex(productoC => productoC.id === productoOriginal.id && productoC.talla === talla);
+    if (existeCarrito >= 0) {
+        // Producto ya existe en el carrito con la misma talla, incrementamos la cantidad
+        carrito.value[existeCarrito].cantidad++;
+        console.log("Producto ya en el carrito, sumamos +1 a la cantidad de " + productoOriginal.nombre);
+    } else {
+        // Creamos un nuevo objeto producto para evitar la mutación del objeto original
+        const nuevoProducto = {
+            ...productoOriginal, // Copiamos todas las propiedades del producto original
+            cantidad: 1, // Establecemos la cantidad inicial
+            id: uid(), // Generamos un nuevo ID único
+            talla: talla // Establecemos la nueva talla
+        };
+        carrito.value.push(nuevoProducto); // Añadimos el nuevo producto al carrito
+        console.log(`Añadimos producto ${nuevoProducto.nombre} al carrito con talla ${nuevoProducto.talla}`);
+    }
+  };
 
   // Metodos del carrito que provienen del HEADER
   const incrementarCantidadProducto = (id) => {

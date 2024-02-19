@@ -9,20 +9,10 @@
     })
 
     const talla = ref('');
-    let tallaValor
     const mostrarAlertaRoja=ref(false)
     const mostrarAlertaVerde=ref(false)
     
-
-    // const emit = defineEmits(['agregar-producto-carrito']);
-    const emit = defineEmits({
-        'agregar-producto-carrito': (producto, talla) => {
-            if (talla.value === '') {
-            return  false; // Valid
-            }
-            return true; // Invalid
-        }
-    });
+    const emit = defineEmits(['agregar-producto-carrito']);
     
     const modificarTalla = (tallaSeleccionada) => {
         if (talla.value === tallaSeleccionada) talla.value = '';
@@ -49,8 +39,7 @@
                 mostrarAlertaVerde.value = false;
             }, 2000);
             
-            tallaValor = talla.value;
-            emit('agregar-producto-carrito', props.producto, tallaValor)
+            emit('agregar-producto-carrito', props.producto, talla.value)
             talla.value=""
         }
     };

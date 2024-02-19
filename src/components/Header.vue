@@ -99,9 +99,9 @@
             
             <!-- Botón Pagar, fuera del contenedor de desplazamiento -->
             <div class="flex absolute bottom-0">
-                
                 <button class="bg-white text-purple-800 p-2 mx-2 rounded-md my-2 self-center mt-auto"> PAGAR </button>
                 <button class="bg-red-400 text-black-700 p-2 mx-2 rounded-md my-2 self-center mt-auto" @click="$emit('vaciar-carrito')"> VACIAR </button>
+                <p class="px-2"> <span class="font-boldn"> Total: </span>{{ totalPagar }}</p>
             </div>
             
         </div>
