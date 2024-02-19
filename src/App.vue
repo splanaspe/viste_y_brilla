@@ -24,15 +24,16 @@ import {db} from './data/productos';
     localStorage.setItem('carrito', JSON.stringify(carrito.value))
   }
 
-  const agregarProductoCarrito = (producto) => {
+  const agregarProductoCarrito = (producto, talla) => {
     const existeCarrito = carrito.value.findIndex(productoC => productoC.id === producto.id)
     if(existeCarrito >=0) {
-      carrito.value[existeCarrito].cantidad++
-      console.log("Producto ya en el carrito, sumamos +1"+producto.nombre)
+      carrito.value[existeCarrito].cantidad++;
+      console.log("Producto ya en el carrito, sumamos +1"+producto.nombre);
     }else{
-      producto.cantidad=1
-      carrito.value.push(producto)
-      console.log("Añadimos producto "+producto.nombre+" al carrito")
+      producto.cantidad=1;
+      producto.talla=talla;
+      carrito.value.push(producto);
+      console.log("Añadimos producto "+producto.nombre+" al carrito");
     }  // accedemos con .value porque estamos en el script
   }
 

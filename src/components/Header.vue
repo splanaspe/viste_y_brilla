@@ -48,19 +48,19 @@
 
 <template>
     <header class=" fixed top-0 w-full z-50">
-        <div class="flex justify-around items-center  bg-purple-500 shadow-xl p-4 inline text-center h-18"> 
+        <div class="flex justify-around items-center  bg-gray-100 shadow-md p-4 inline text-center h-18"> 
         <div class="">
             <img class="h-16 w-16 hover:cursor-pointer hover:scale-110 transition-transform duration-300" src="../assets/ramadan.png">
         </div>
         <div class="">
             <ul class="inline flex">
-                <li class="mr-2 text-2xl mx-3 cursor-pointer text-white hover:text-gray-100 hover:underline-offset-4 hover:underline"> Tienda</li>
-                <li class="mr-2 text-2xl mx-3 cursor-pointer text-white hover:text-gray-100 hover:underline-offset-4 hover:underline"> Rebajas</li>
-                <li class="text-2xl mx-3 cursor-pointer text-white hover:text-gray-100 hover:underline-offset-4 hover:underline"> Proyecto</li>
+                <li class="mr-2 text-2xl mx-3 cursor-pointer text-purple-800 hover:text-purple-600 hover:underline-offset-4 hover:underline"> Tienda</li>
+                <li class="mr-2 text-2xl mx-3 cursor-pointer text-purple-800 hover:text-purple-600 hover:underline-offset-4 hover:underline"> Rebajas</li>
+                <li class="text-2xl mx-3 cursor-pointer text-purple-800 hover:text-purple-600 hover:underline-offset-4 hover:underline"> Proyecto</li>
             </ul>
         </div>
         <div @click="mostrarCarritoHandler" class="relative hover:scale-125 transition-transform duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-cart4  hover:cursor-pointer" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="purple" class="bi bi-cart4  hover:cursor-pointer" viewBox="0 0 16 16">
                 <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
             </svg>
             <span class="absolute top-1 right-0 transform translate-x-1/2 -translate-y-1/2 bg-orange-200 text-black-800 font-bold rounded-md text-xs px-2 py-1">
@@ -70,15 +70,15 @@
         </div>
     <!-- CARRITO -->
     <div v-if="mostrarCarrito" @mouseleave="ocultarCarritoHandler" @mouseenter="haEntradoCarrito = true" class="relative z-50">    
-    <div class="absolute rounded-md px-3 py-1 h-96 w-96 bg-purple-500 right-2 top-2">
-        <p v-if="carrito.length === 0" class="text-white text-xl"> No hay productos en el carrito </p>
+    <div class="absolute rounded-md px-3 py-1 h-96 w-96 bg-gray-100 right-2 top-2">
+        <p v-if="carrito.length === 0" class="text-purple-800 text-xl"> No hay productos en el carrito </p>
         <div v-else class="flex flex-col h-full">
             <!-- Contenedor de los productos con desplazamiento -->
             <div class="overflow-y-auto max-h-80 divide-y-2 bg-white rounded-md">
                 <div class="py-2" v-for="producto in carrito">
                     <div class="flex flex-col items-center">
                         <div class="flex items-center justify-center text-center">
-                            <p class="text-black mx-3 font-bold"> {{ producto.nombre }} : </p>
+                            <p class="text-black mx-3 font-bold"> {{ producto.nombre }} {{ producto.talla }}: </p>
                             <p>  {{ producto.precio }} €</p>
                             <span class="mx-1 px-1 text-2xl text-red-500  bg-white rounded-md cursor-pointer" @click="$emit('decrementar-cantidad-producto', producto.id)"> - </span>
                             <span class="mx-1 text-xl"> {{ producto.cantidad }} </span>

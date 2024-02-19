@@ -9,9 +9,20 @@
     })
 
     const talla = ref('');
-    const mostrarAlerta=ref(false)
+    let tallaValor
+    const mostrarAlertaRoja=ref(false)
+    const mostrarAlertaVerde=ref(false)
+    
 
     // const emit = defineEmits(['agregar-producto-carrito']);
+    const emit = defineEmits({
+        'agregar-producto-carrito': (producto, talla) => {
+            if (talla.value === '') {
+            return  false; // Valid
+            }
+            return true; // Invalid
+        }
+    });
     
     const modificarTalla = (tallaSeleccionada) => {
         if (talla.value === tallaSeleccionada) talla.value = '';
@@ -21,14 +32,26 @@
     const agregarCarrito = () => {
         if (talla.value === '') {
             //Muestra la alerta
-            mostrarAlerta.value = true;
+            mostrarAlertaRoja.value = true;
+            mostrarAlertaVerde.value= false;
+            
             // Oculta la alerta después de 2 segundos
             setTimeout(() => {
-            mostrarAlerta.value = false;
+            mostrarAlertaRoja.value = false;
             }, 2000);
         } else {
             // Lógica para agregar el producto al carrito
-            emit('agregar-producto-carrito')
+            mostrarAlertaVerde.value = true;
+            mostrarAlertaRoja.value=false;
+            
+            // Oculta la alerta después de 2 segundos
+            setTimeout(() => {
+                mostrarAlertaVerde.value = false;
+            }, 2000);
+            
+            tallaValor = talla.value;
+            emit('agregar-producto-carrito', props.producto, tallaValor)
+            talla.value=""
         }
     };
 
@@ -73,12 +96,17 @@
             </div>
         </div>
         <button
-            class="bg-orange-200 text-black-700 p-2 mx-2 rounded-md  my-2 hover:cursor-pointer hover:scale-110 transition-transform duration-100"
+            :class="{ 'bg-orange-300 hover:cursor-pointer hover:scale-110 transition-transform duration-100': talla !== '', 'bg-orange-100': talla === '' }"
+
+            class="text-black-700 p-2 mx-2 rounded-md  my-2"
             @click="agregarCarrito"> 
             <p> Añadir Carrito </p>  
         </button>
-        <div v-if="mostrarAlerta" class="fixed right-4 bottom-4 z-50 bg-red-500 text-white p-4 rounded-md">
-            Debe escoger una talla para agregar el producto.
+        <div v-if="mostrarAlertaRoja" class="fixed right-4 bottom-4 z-50 bg-red-500 text-white p-4 rounded-md w-56">
+            Debe escoger una talla para agregar el producto
+        </div>
+        <div v-if="mostrarAlertaVerde" class="fixed right-4 bottom-4 z-50 bg-green-500 text-white p-4 rounded-md w-56">
+            Producto añadido correctamente al carrito
         </div>
     </div>
 </template>
