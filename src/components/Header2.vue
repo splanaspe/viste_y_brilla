@@ -118,8 +118,16 @@
     </div>
 
     <!-- Menu Izquierda -->
-    <div v-if="isMenuOpen" class="absolute left-0 top-18 w-2/6 z-50 border-b-2 border-purple-800  bg-gray-200">
-        sdf
+    <div v-if="isMenuOpen" class="absolute left-0 top-18 w-auto z-50 border-b-2 border-purple-800  bg-gray-200 px-4">
+        <div class="rounded-md">
+            <ul class="py-4 sm:px-1 lg:px-3 text-start divide-y-2 divide-gray-400" role="list">
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Abayas  </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Bolsos  </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Accesorios </li>
+            </ul>
+        </div>
     </div>
     </header>
     
