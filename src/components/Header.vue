@@ -47,7 +47,7 @@
 </script>
 
 <template>
-    <header class=" fixed top-0 w-full z-50">
+    <header class="top-0 w-full z-50">
         <div class="flex justify-around items-center  bg-gray-100 shadow-md p-4 inline text-center h-14"> 
         <div class="">
             <img class="h-10 w-10 hover:cursor-pointer hover:scale-110 transition-transform duration-300" src="../assets/ramadan.png">
@@ -70,19 +70,19 @@
         </div>
     <!-- CARRITO -->
     <div v-if="mostrarCarrito" @mouseleave="ocultarCarritoHandler" @mouseenter="haEntradoCarrito = true" class="relative z-50">    
-    <div class="absolute rounded-md px-3 py-1 h-96 w-96 bg-gray-100 right-2 top-2">
-        <p v-if="carrito.length === 0" class="text-purple-800 text-xl"> No hay productos en el carrito </p>
+    <div class="absolute rounded-md px-3 py-1 sm:h-auto sm:w-72 md:h-auto md:w-96 bg-gray-100 right-2 top-2">
+        <p v-if="carrito.length === 0" class="text-purple-800 sm:text-sm md:text-xl"> No hay productos en el carrito </p>
         <div v-else class="flex flex-col h-full">
             <!-- Contenedor de los productos con desplazamiento -->
             <div class="overflow-y-auto max-h-80 divide-y-2 bg-white rounded-md">
                 <div class="py-2" v-for="producto in carrito">
                     <div class="flex flex-col items-center">
                         <div class="flex items-center justify-center text-center">
-                            <p class="text-black mx-3 font-bold"> {{ producto.nombre }} {{ producto.talla }}: </p>
+                            <p class="text-black mx-3 font-bold sm:text-sm md:text-xl"> {{ producto.nombre }} {{ producto.talla }}: </p>
                             <p>  {{ producto.precio }} €</p>
-                            <span class="mx-1 px-1 text-2xl text-red-500  bg-white rounded-md cursor-pointer" @click="$emit('decrementar-cantidad-producto', producto.id)"> - </span>
-                            <span class="mx-1 text-xl"> {{ producto.cantidad }} </span>
-                            <span class="mx-1 px-1 text-xl text-green-500 bg-white rounded-md cursor-pointer" @click="$emit('incrementar-cantidad-producto', producto.id)"> + </span>
+                            <span class="mx-1 px-1 sm:text-md md:text-2xl text-red-500  bg-white rounded-md cursor-pointer" @click="$emit('decrementar-cantidad-producto', producto.id)"> - </span>
+                            <span class="mx-1 sm:text-sm md:text-xl"> {{ producto.cantidad }} </span>
+                            <span class="mx-1 px-1 sm:text-sm md:text-xl text-green-500 bg-white rounded-md cursor-pointer" @click="$emit('incrementar-cantidad-producto', producto.id)"> + </span>
                             <span class="mx-1 text-black" @click="$emit('eliminar-producto-carrito', producto.id)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-x-circle cursor-pointer" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -98,15 +98,15 @@
         </div >
             
             <!-- Botón Pagar, fuera del contenedor de desplazamiento -->
-            <div class="flex absolute bottom-0">
-                <button class="bg-white text-purple-800 p-2 mx-2 rounded-md my-2 self-center mt-auto"> PAGAR </button>
-                <button class="bg-red-400 text-black-700 p-2 mx-2 rounded-md my-2 self-center mt-auto" @click="$emit('vaciar-carrito')"> VACIAR </button>
-                <p class="px-2"> <span class="font-boldn"> Total: </span>{{ totalPagar }}</p>
+            <div class="flex sticky bottom-0 my-2 justify-center">
+                <button class="bg-white text-purple-800 p-2 mx-2 rounded-md my-2 self-center mt-auto sm:text-sm md:text-xl"> PAGAR </button>
+                <button class="bg-red-400 text-black-700 p-2 mx-2 rounded-md my-2 self-center mt-auto sm:text-sm md:text-xl" @click="$emit('vaciar-carrito')"> VACIAR </button>
+                <p class="px-2 sm:text-sm md:text-xl"> <span class="font-boldn"> Total: </span>{{ totalPagar }}</p>
             </div>
             
         </div>
+        </div>
     </div>
-</div>
 
     </header>
     

@@ -8,6 +8,7 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
 
   const productos = ref([]);
   const carrito = ref([]);
+  const nuevoProducto = {}
 
   onMounted( () => {
       productos.value=db
@@ -26,21 +27,31 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
       localStorage.setItem('carrito', JSON.stringify(carrito.value))
   }
 
-  const agregarProductoCarrito = (productoOriginal, talla) => {
-    const existeCarrito = carrito.value.findIndex(productoC => productoC.id === productoOriginal.id);
+  const agregarProductoCarrito = (producto, talla) => {
+    const existeCarrito = carrito.value.findIndex(productoC => productoC.id === producto.id);
     if (existeCarrito >= 0) {
-        // Producto ya existe en el carrito con la misma talla, incrementamos la cantidad
-        carrito.value[existeCarrito].cantidad++;
-        console.log("Producto ya en el carrito, sumamos +1 a la cantidad de " + productoOriginal.nombre);
+        // Producto ya existe en el carrito
+        //Vemos si el producto del carrito tiene la misma talla o no
+        if(carrito.value[existeCarrito].talla !== talla){
+            nuevoProducto = {
+              ...producto, // Copiamos todas las propiedades del producto 
+              cantidad: 1, // Establecemos la cantidad inicial
+              id: uid(), // Generamos un nuevo ID único
+              talla: talla // Establecemos la nueva talla
+          };
+          carrito.value.push(nuevoProducto);
+        } else{
+          // Es la misma talla, incrementamos cantidad
+          carrito.value[existeCarrito].cantidad++;
+          console.log("Producto ya en el carrito, sumamos +1 a la cantidad de " + producto.nombre);
+        }
+        
     } else {
-        // Creamos un nuevo objeto producto para evitar la mutación del objeto original
-        const nuevoProducto = {
-            ...productoOriginal, // Copiamos todas las propiedades del producto original
-            cantidad: 1, // Establecemos la cantidad inicial
-            id: uid(), // Generamos un nuevo ID único
-            talla: talla // Establecemos la nueva talla
-        };
-        carrito.value.push(nuevoProducto); // Añadimos el nuevo producto al carrito
+        // Creamos nuevo producto en el carrito
+        producto.cantidad = 1;
+        producto.id = uid();
+        producto.talla=talla;
+        carrito.value.push(producto)// Añadimos el nuevo producto al carrito
         console.log(`Añadimos producto ${nuevoProducto.nombre} al carrito con talla ${nuevoProducto.talla}`);
     }
   };
@@ -81,20 +92,18 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
     > </Header>
 
     <div
-      class="grid grid-cols-[15%_auto] text-start px-4 my-10 gap-6 relative pt-10"
-    >
-        
-        <div class="rounded-md self-start top-4 sticky pt-7">
-            <ul class="py-4 px-5 text-center divide-y-4 divide-gray-100" role="list">
-                <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
-                <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
-                <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Abayas  </li>
-                <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Bolsos  </li>
-                <li class="my-1 text-2xl cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Accesorios </li>
+      class="grid md:grid-cols-[15%_auto] text-start px-4 my-2 gap-6 relative ">
+        <div class="rounded-md self-start top-0 md:sticky ">
+            <ul class="py-4 sm:px-1 lg:px-3 text-center divide-y-4 divide-gray-100" role="list">
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Abayas  </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Bolsos  </li>
+                <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Accesorios </li>
             </ul>
         </div>
 
-        <div class="grid grid-cols-3 gap-6 content-start snap-y">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-start snap-y">
           <ProductoGaleria
             v-for="producto in productos"
             v-bind:producto="producto"

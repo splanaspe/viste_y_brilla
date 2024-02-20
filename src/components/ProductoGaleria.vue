@@ -47,12 +47,12 @@
 </script>
 <template>
 
-    <div class="rounded-md p-3 basis-1/4 shadow-md text-center relative"> 
+    <div class="rounded-md sm:p-1 md:p-3 basis-1/4 shadow-md text-center relative"> 
         <img class="rounded-md" :src='"src/assets/"+producto.imagen'>
-        <h1 class="text-xl font-bold text-purple-800 my-2 hover:underline hover:cursor-pointer"> {{ producto.nombre }}</h1>
-        <p class="text-lg"> {{ producto.precio }} $</p>
+        <h1 class="md:text-xl sm:text-md font-bold text-purple-800 my-2 hover:underline hover:cursor-pointer"> {{ producto.nombre }}</h1>
+        <p class="md:text-lg sm:text-sm"> {{ producto.precio }} $</p>
 
-        <div class="flex gap-2 justify-center items-center my-3 relative">
+        <div class="flex gap-2 justify-center items-center sm:my-1 md:my-3 relative">
             <div 
                 :class=" talla=='S' ? 'border-black' : 'border-white'"
                 class="p-2 border-2 hover:border-black rounded-full"
