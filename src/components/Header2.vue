@@ -1,7 +1,10 @@
 <script setup>
     import {ref, computed} from 'vue'
 
+    import BurguerMenuVue from './BurguerMenu.vue';
+
     const mostrarCarrito = ref(false);
+    const isMenuOpen = ref(false);
     let tiempo, tiempo2;
     let haEntradoCarrito= ref(false);
 
@@ -44,20 +47,26 @@
             }
         }, 4000)
     }
+
 </script>
 
 <template>
     <header class="top-0 w-full z-50">
-        <div class="flex justify-around items-center  bg-gray-200 shadow-md p-4 inline text-center h-"> 
-        <div class="">
-            <img class="h-10 w-10 hover:cursor-pointer hover:scale-110 transition-transform duration-300" src="../assets/ramadan.png">
-        </div>
-        <div class="">
-            <ul class="flex">
-                <li class="mr-2 text-lg mx-3 cursor-pointer text-purple-800 hover:text-purple-600 hover:underline-offset-4 hover:underline"> Tienda</li>
-                <li class="mr-2 text-lg mx-3 cursor-pointer text-purple-800 hover:text-purple-600 hover:underline-offset-4 hover:underline"> Rebajas</li>
-                <li class="text-lg mx-3 cursor-pointer text-purple-800 hover:text-purple-600 hover:underline-offset-4 hover:underline"> Proyecto</li>
-            </ul>
+        <div class="flex justify-around items-center  bg-gray-200 shadow-md p-4 inline text-center border-b-2 border-purple-800"> 
+            <div @click="isMenuOpen = !isMenuOpen" class="menu-icon hover:cursor-pointer">
+                <!-- Icono de menú cerrado -->
+                <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list transition duration-500 ease-in-out transform" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+                <!-- Icono de menú abierto -->
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x transition duration-500 ease-in-out transform" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </div>
+        <div class="flex items-center scale-125">
+            <span class="text-purple-800 mx-2 sm:text-lg md:text-xl font-bold"> HALAL</span>
+            <img class="h-10 w-10 mx-2" src="../assets/ramadan.png">
+            <span class="text-gray-600 mx-2 sm:text-lg md:text-xl font-bold"> MOODS</span>
         </div>
         <div @click="mostrarCarritoHandler" class="relative hover:scale-125 transition-transform duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="purple" class="bi bi-cart4  hover:cursor-pointer" viewBox="0 0 16 16">
@@ -107,7 +116,19 @@
         </div>
         </div>
     </div>
+
+    <!-- Menu Izquierda -->
+    <div v-if="isMenuOpen" class="absolute left-0 top-18 w-2/6 z-50 border-b-2 border-purple-800  bg-gray-200">
+        sdf
+    </div>
     </header>
-   
     
 </template>
+
+<style scoped>
+    .menu-icon {
+        transition: transform 0.3s ease;
+    }
+
+
+</style>

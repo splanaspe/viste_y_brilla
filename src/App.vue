@@ -4,6 +4,7 @@ import {uid} from 'uid'
 import {db} from './data/productos';
 
 import Header from './components/Header.vue';
+import Header2 from './components/Header2.vue';
 import ProductoGaleria from './components/ProductoGaleria.vue';
 
   const productos = ref([]);
@@ -83,13 +84,13 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
 </script>
 
 <template>
-    <Header
+    <Header2
       :carrito="carrito"
       @incrementar-cantidad-producto="incrementarCantidadProducto"
       @decrementar-cantidad-producto ="decrementarCantidadProducto"
       @vaciar-carrito="vaciarCarrito"
       @eliminar-producto-carrito="eliminarProductoCarrito"
-    > </Header>
+    > </Header2>
 
     <div
       class="grid md:grid-cols-[15%_auto] text-start px-4 my-2 gap-6 relative ">
