@@ -28,7 +28,7 @@
             // Oculta la alerta después de 2 segundos
             setTimeout(() => {
             mostrarAlertaRoja.value = false;
-            }, 2000);
+            }, 1000);
         } else {
             // Lógica para agregar el producto al carrito
             mostrarAlertaVerde.value = true;
@@ -37,7 +37,7 @@
             // Oculta la alerta después de 2 segundos
             setTimeout(() => {
                 mostrarAlertaVerde.value = false;
-            }, 2000);
+            }, 1000);
             
             emit('agregar-producto-carrito', props.producto, talla.value)
             talla.value=""
@@ -92,10 +92,10 @@
             @click="agregarCarrito"> 
             <p> Añadir Carrito </p>  
         </button>
-        <div v-if="mostrarAlertaRoja" class="fixed right-4 bottom-4 z-50 bg-red-500 text-white p-4 rounded-md w-56">
+        <div v-if="mostrarAlertaRoja" class="fixed right-4 bottom-4 z-50 bg-red-500 text-white p-4 rounded-md">
             Debe escoger una talla para agregar el producto
         </div>
-        <div v-if="mostrarAlertaVerde" class="fixed right-4 bottom-4 z-50 bg-green-500 text-white p-4 rounded-md w-56">
+        <div v-if="mostrarAlertaVerde" class="fixed right-4 bottom-4 z-50 bg-green-500 text-white p-4 rounded-md">
             Producto añadido correctamente al carrito
         </div>
     </div>

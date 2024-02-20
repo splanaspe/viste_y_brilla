@@ -8,7 +8,7 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
 
   const productos = ref([]);
   const carrito = ref([]);
-  const nuevoProducto = {}
+  let nuevoProducto = {}
 
   onMounted( () => {
       productos.value=db
