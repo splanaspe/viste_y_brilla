@@ -11,8 +11,6 @@
     const talla = ref('');
     const mostrarAlertaRoja=ref(false)
     const mostrarAlertaVerde=ref(false)
-    let time1;
-    let time2;
     
     const emit = defineEmits(['agregar-producto-carrito']);
     
@@ -28,7 +26,7 @@
             mostrarAlertaVerde.value= false;
             
             // Oculta la alerta después de 2 segundos
-            time1 = setTimeout(() => {
+            setTimeout(() => {
             mostrarAlertaRoja.value = false;
             }, 2000);
             
@@ -38,7 +36,7 @@
             mostrarAlertaRoja.value=false;
             
             // Oculta la alerta después de 2 segundos
-            time2=setTimeout(() => {
+            setTimeout(() => {
                 mostrarAlertaVerde.value = false;
             }, 2000);
             
@@ -55,7 +53,7 @@
         <h1 class="md:text-xl sm:text-md font-bold text-purple-800 my-2 hover:underline hover:cursor-pointer"> {{ producto.nombre }}</h1>
         <p class="md:text-lg sm:text-sm"> {{ producto.precio }} $</p>
 
-        <div class="flex gap-2 justify-center items-center sm:my-1 md:my-3 relative">
+        <div class="flex gap-1 justify-center items-center sm:my-1 md:my-3 relative">
             <div 
                 :class=" talla=='S' ? 'border-black' : 'border-white'"
                 class="p-2 border-2 hover:border-black rounded-full"

@@ -75,9 +75,10 @@
             </span>
         </div>
         </div>
+
     <!-- CARRITO -->
-    <div v-if="mostrarCarrito" @mouseleave="ocultarCarritoHandler" @mouseenter="haEntradoCarrito = true" class="relative z-50">    
-    <div class="absolute rounded-md px-3 py-1 sm:h-auto sm:w-72 md:h-auto md:w-96 bg-purple-800 right-2 top-2">
+    <div v-if="mostrarCarrito" @mouseleave="ocultarCarritoHandler" @mouseenter="haEntradoCarrito = true" class="relative">    
+    <div class="absolute border-b-2 border-gray-200 rounded-md px-3 py-1 sm:h-auto sm:w-72 md:h-auto md:w-96 bg-purple-800 right-2 top-2">
         <p v-if="carrito.length === 0" class="text-white sm:text-sm md:text-xl"> No hay productos en el carrito </p>
         <div v-else class="flex flex-col h-full">
             <!-- Contenedor de los productos con desplazamiento -->
@@ -116,25 +117,28 @@
     </div>
 
     <!-- Menu Izquierda -->
-    <div v-if="isMenuOpen" class="absolute left-0 top-18 w-auto z-50 border-b-2 border-purple-800  bg-gray-200 px-4 p-2">
+    <div v-if="isMenuOpen" class="absolute left-0 top-18 w-auto border-b-2 border-gray-200  rounded-md bg-purple-800 px-4 py-2">
         <div class="rounded-md">
-            <div class="flex icono-login justify-center items-center text-center mt-4 hover:cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="purple" class="bi bi-person-circle mx-2" viewBox="0 0 16 16">
+            <div class="flex wrap icono-login justify-center items-center text-center mt-4 bg-">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-person-circle mx-2 gray-100 bg-gray-300 p-1 rounded-md" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                 </svg>
+                <span class="my-1 text-xl cursor-pointer  text-gray-300 hover:underline-offset-4 hover:underline ">  Iniciar Sesión </span>
             </div>
             <div class="mt-5 mb-2 pt-2 flex justify-center items-center text-center border-t-2 border-gray-400" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="purple" class="bi bi-shop" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-shop bg-gray-300 p-1 rounded-md" viewBox="0 0 16 16">
                     <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
                 </svg>
             </div>
             <ul class=" sm:px-1 lg:px-3 text-start divide-y-2 divide-gray-400" role="list">
-                <li class="my-1 text-xl cursor-pointer  text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
-                <li class="my-1 text-xl cursor-pointer  text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
-                <li class="my-1 text-xl cursor-pointer text-purple-800 hover:underline-offset-4 hover:underline "> Abayas  </li>
-                <li class="my-1 text-xl cursor-pointer  text-purple-800 hover:underline-offset-4 hover:underline "> Bolsos  </li>
-                <li class="my-1 text-xl cursor-pointer  text-purple-800 hover:underline-offset-4 hover:underline ">  Accesorios </li>
+                <li class="my-1 text-xl cursor-pointer  text-gray-300 hover:underline-offset-4 hover:underline ">  Packs </li>
+                <li class="my-1 text-xl cursor-pointer  text-gray-300 hover:underline-offset-4 hover:underline "> Conjuntos</li>
+                <li class="my-1 text-xl cursor-pointer text-gray-300 hover:underline-offset-4 hover:underline "> Abayas  </li>
+                <li class="my-1 text-xl cursor-pointer text-gray-300 hover:underline-offset-4 hover:underline "> Khimar  </li>
+                <li class="my-1 text-xl cursor-pointer text-gray-300 hover:underline-offset-4 hover:underline "> Hijabs  </li>
+                <li class="my-1 text-xl cursor-pointer  text-gray-300 hover:underline-offset-4 hover:underline "> Bolsos  </li>
+                <li class="my-1 text-xl cursor-pointer  text-gray-300 hover:underline-offset-4 hover:underline ">  Accesorios </li>
             </ul>
         </div>
     </div>
