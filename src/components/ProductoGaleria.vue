@@ -28,7 +28,7 @@
             // Oculta la alerta después de 2 segundos
             setTimeout(() => {
             mostrarAlertaRoja.value = false;
-            }, 1000);
+            }, 2000);
         } else {
             // Lógica para agregar el producto al carrito
             mostrarAlertaVerde.value = true;
@@ -37,7 +37,7 @@
             // Oculta la alerta después de 2 segundos
             setTimeout(() => {
                 mostrarAlertaVerde.value = false;
-            }, 1000);
+            }, 2000);
             
             emit('agregar-producto-carrito', props.producto, talla.value)
             talla.value=""
@@ -47,7 +47,7 @@
 </script>
 <template>
 
-    <div class="rounded-md sm:p-1 md:p-3 basis-1/4 shadow-md text-center relative"> 
+    <div class="rounded-md sm:p-1 md:p-3 basis-1/4 shadow-md text-center relative" > 
         <img class="rounded-md" :src='"src/assets/"+producto.imagen'>
         <h1 class="md:text-xl sm:text-md font-bold text-purple-800 my-2 hover:underline hover:cursor-pointer"> {{ producto.nombre }}</h1>
         <p class="md:text-lg sm:text-sm"> {{ producto.precio }} $</p>

@@ -93,8 +93,8 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
     > </Header2>
 
     <div
-      class="grid md:grid-cols-[15%_auto] text-start px-4 my-2 gap-6 relative ">
-        <div class="rounded-md self-start top-0 md:sticky ">
+      class="grid md:grid-cols-[15%_auto] text-start px-4 py-20 my-2 gap-6 relative ">
+        <div class="rounded-md self-start top-0 md:sticky">
             <ul class="py-4 sm:px-1 lg:px-3 text-center divide-y-4 divide-gray-100" role="list">
                 <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
                 <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>

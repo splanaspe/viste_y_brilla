@@ -1,8 +1,6 @@
 <script setup>
     import {ref, computed} from 'vue'
 
-    import BurguerMenuVue from './BurguerMenu.vue';
-
     const mostrarCarrito = ref(false);
     const isMenuOpen = ref(false);
     let tiempo, tiempo2;
@@ -51,7 +49,7 @@
 </script>
 
 <template>
-    <header class="top-0 w-full z-50">
+    <header class="top-0 w-full z-50 fixed">
         <div class="flex justify-around items-center  bg-gray-200 shadow-md p-4 inline text-center border-b-2 border-purple-800"> 
             <div @click="isMenuOpen = !isMenuOpen" class="menu-icon hover:cursor-pointer">
                 <!-- Icono de menú cerrado -->
@@ -120,6 +118,12 @@
     <!-- Menu Izquierda -->
     <div v-if="isMenuOpen" class="absolute left-0 top-18 w-auto z-50 border-b-2 border-purple-800  bg-gray-200 px-4">
         <div class="rounded-md">
+            <div class="flex sm:px-3 lg:px-6 text-start mt-4 hover:cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="purple" class="bi bi-person-circle mx-2" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                </svg>
+            </div>
             <ul class="py-4 sm:px-1 lg:px-3 text-start divide-y-2 divide-gray-400" role="list">
                 <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline ">  Jilbabs </li>
                 <li class="my-1 lg:text-lg sm:text-xs cursor-pointer text-lg text-purple-800 hover:underline-offset-4 hover:underline "> Hijabs  </li>
