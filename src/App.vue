@@ -6,6 +6,7 @@ import {db} from './data/productos';
 import Header from './components/Header.vue';
 import Header2 from './components/Header2.vue';
 import ProductoGaleria from './components/ProductoGaleria.vue';
+import Footer from './components/Footer.vue';
 
   const productos = ref([]);
   const carrito = ref([]);
@@ -104,7 +105,7 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
             </ul>
         </div>
 
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-start snap-y">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 content-start snap-y mx-14">
           <ProductoGaleria
             v-for="producto in productos"
             v-bind:producto="producto"
@@ -113,7 +114,8 @@ import ProductoGaleria from './components/ProductoGaleria.vue';
 
     </div>
 
-    <div class="h-48">
+    <div class="h-20">
 
     </div>
+    <Footer> </Footer>
 </template>

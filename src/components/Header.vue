@@ -28,7 +28,7 @@
             tiempo = setInterval( () =>{
             mostrarCarrito.value=false;
             haEntradoCarrito.value=false;
-        }, 200)
+        }, 500)
         }       
     }
 
@@ -108,6 +108,5 @@
         </div>
     </div>
     </header>
-   
     
 </template>

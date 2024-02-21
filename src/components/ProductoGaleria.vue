@@ -11,6 +11,8 @@
     const talla = ref('');
     const mostrarAlertaRoja=ref(false)
     const mostrarAlertaVerde=ref(false)
+    let time1;
+    let time2;
     
     const emit = defineEmits(['agregar-producto-carrito']);
     
@@ -26,16 +28,17 @@
             mostrarAlertaVerde.value= false;
             
             // Oculta la alerta después de 2 segundos
-            setTimeout(() => {
+            time1 = setTimeout(() => {
             mostrarAlertaRoja.value = false;
             }, 2000);
+            
         } else {
             // Lógica para agregar el producto al carrito
             mostrarAlertaVerde.value = true;
             mostrarAlertaRoja.value=false;
             
             // Oculta la alerta después de 2 segundos
-            setTimeout(() => {
+            time2=setTimeout(() => {
                 mostrarAlertaVerde.value = false;
             }, 2000);
             
@@ -48,7 +51,7 @@
 <template>
 
     <div class="rounded-md sm:p-1 md:p-3 basis-1/4 shadow-md text-center relative" > 
-        <img class="rounded-md" :src='"src/assets/"+producto.imagen'>
+        <img class="rounded-md items-start " :src='"src/assets/"+producto.imagen'>
         <h1 class="md:text-xl sm:text-md font-bold text-purple-800 my-2 hover:underline hover:cursor-pointer"> {{ producto.nombre }}</h1>
         <p class="md:text-lg sm:text-sm"> {{ producto.precio }} $</p>
 
